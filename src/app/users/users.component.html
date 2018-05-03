@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="form-horizontal col-md-5">
+      <form [formGroup]="userForm" #form="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="exampleInputEmail1" class="control-label col-sm-3">Ime: </label>
+          <div class="col-sm-9">
+            <input class="form-control" id="exampleInputEmail1" formControlName="firstName" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1" class="control-label col-sm-3">Prezime: </label>
+          <div class="col-sm-9">
+            <input class="form-control" id="exampleInputEmail1" formControlName="lastName" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary crni" [disabled]="!form.valid">Kreiraj</button>
+
+        <hr />
+      </form>
+      <div *ngIf="!IsHidden">
+        <div class="alert alert-success" *ngIf="onlyStatus === 'SUCCESS'; else errorResponse">
+          <strong>{{ message }}</strong>
+        </div>
+        <ng-template #errorResponse>
+          <div class="alert alert-danger">
+            <strong>{{ message }}</strong>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+<pre>{{ jsonRequest | json }}</pre>

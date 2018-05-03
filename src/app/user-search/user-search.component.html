@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="form-horizontal col-md-5">
+      <form [formGroup]="userForm" #form="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label class="control-label col-sm-5">Kategorija: </label>
+          <div class="col-sm-7">
+            <select [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}" class="form-control">
+              <option *ngFor="let c of category" [ngValue]="c">{{c.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-5">Izaberite atribut: </label>
+          <div class="col-sm-7">
+            <select [(ngModel)]="selectedAttribute" [ngModelOptions]="{standalone: true}" class="form-control">
+              <option *ngFor="let f of filter" [ngValue]="f">{{f.attribute}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-5">Izaberite vrednost: </label>
+          <div class="col-sm-7">
+            <input class="form-control" ng-required='selectedAttribute' [disabled]="!selectedAttribute.valid" formControlName="value">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary crni" [disabled]="!form.valid">Pretraži</button>
+        <hr />
+      </form>
+    </div>
+  </div>
+</div>
